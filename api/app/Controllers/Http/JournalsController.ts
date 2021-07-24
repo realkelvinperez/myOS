@@ -10,7 +10,7 @@ export default class JournalsController {
   public async store({ request }: HttpContextContract) {
     const newJournal = request.body()
     const journal = await Journal.create(newJournal)
-    if (journal.$isPersisted) return Journal
+    if (journal.$isPersisted) return journal
   }
 
   //Read

@@ -6,6 +6,7 @@ export default class TodosController {
   public async index({}: HttpContextContract) {
     return await Todo.all()
   }
+
   // Create
   public async store({ request }: HttpContextContract) {
     const newTodo = request.body()

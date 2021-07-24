@@ -1,9 +1,10 @@
 import React from 'react'
+import { Heading } from '@chakra-ui/layout'
 
 export default function Routines() {
     return (
         <div>
-            <h1>Routines</h1> 
+            <Heading as="h1">Routines</Heading>
         </div>
     )
 }

@@ -1,9 +1,40 @@
 import React from 'react'
+import { Flex, Heading, Spacer, List, Stack } from '@chakra-ui/react'
+import CreateJournal from '../components/CreateJournal'
+import { useQuery } from 'react-query'
+import axios from '../helpers/axios'
+import JournalItem from '../components/JournalItem'
 
 export default function Journal() {
+
+    const fetchJournals = async () => {
+      const { data  } = await axios('journals')
+      return data 
+    }
+
+    const { 
+      isLoading, 
+      isError, 
+      data, 
+      error 
+    } = useQuery('journals', fetchJournals)
+
     return (
         <div>
-           <h1>Journal</h1> 
+          <Flex>
+            <Heading marginBottom={6} as="h1">Journal</Heading>
+            <Spacer />
+            <CreateJournal />
+          </Flex>
+          <List>
+            <Stack spacing={5}>
+              {
+                !isLoading && 
+                data.map((journal, i) => (<JournalItem key={i} journal={journal} />))
+              }
+              {isError && (<div>There is an error {error}</div>)}
+            </Stack>
+          </List>
         </div>
     )
 }
