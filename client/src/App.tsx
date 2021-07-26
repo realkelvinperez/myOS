@@ -12,7 +12,7 @@ export default function App() {
                     <Box as="nav">
                         <List>
                             <ListItem>
-                                <Link to="/">Home</Link>
+                                <Link to="/">Dashboard</Link>
                             </ListItem>
                             <ListItem>
                                 <Link to="/todos">Todos</Link>

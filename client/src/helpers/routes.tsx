@@ -3,13 +3,13 @@ import Journal from "../pages/Journal";
 import Routines from "../pages/Routines";
 import Todos from "../pages/Todos";
 import Todo from "../pages/Todo";
-import Home from "../pages/Home";
+import Dashboard from "../pages/Dashboard";
 
 const routes = [
     {
       path: '/',
       exact: true,
-      component: Home
+      component: Dashboard 
     },
     {
       exact: true,  
@@ -23,7 +23,7 @@ const routes = [
     },
     {
       exact: true,  
-      path: '/todo/:todoId',
+      path: '/todo/:id',
       component: Todo 
     },
     {

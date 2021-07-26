@@ -1,4 +1,9 @@
+import React from 'react'
 import axios from '../helpers/axios'
+import { useQuery } from 'react-query'
+import CreateTodo from '../components/CreateTodo';
+import TodoItem from '../components/TodoItem';
+import { ITodo } from '../typing/data';
 import { 
   Heading, 
   Stack,
@@ -6,10 +11,6 @@ import {
   Flex,
   Spacer,
 } from '@chakra-ui/layout';
-import { useQuery } from 'react-query'
-import CreateTodo from '../components/CreateTodo';
-import TodoItem from '../components/TodoItem';
-import React from 'react'
 
 function Todos() {
 
@@ -37,16 +38,16 @@ function Todos() {
         <Stack spacing={5}>
           {
             !isLoading && 
-            data.map((todo, i) => {
-              if(!todo.completed) return (<TodoItem key={i} todo={todo} />)
+            data.map((todo: ITodo) => {
+              if(!todo.completed) return (<TodoItem key={todo.id} todo={todo} />)
               else return false
             })
           }
           <Heading as="h2">Completed Todos</Heading>
           {
             !isLoading && 
-            data.map((todo, i) => {
-              if(todo.completed) return (<TodoItem key={i} todo={todo} />)
+            data.map((todo: ITodo) => {
+              if(todo.completed) return (<TodoItem key={todo.id} todo={todo} />)
               else return false
             })
           }
