@@ -8,7 +8,7 @@ import {
     AlertDialogFooter,
     Button,
 } from "@chakra-ui/react";
-import { CRef } from '../typing/MyRef'
+import { CRef } from '../../typing/MyRef'
 
 interface IAlert {
     text: string;

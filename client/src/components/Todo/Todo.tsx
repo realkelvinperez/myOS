@@ -11,15 +11,18 @@ import {
 import { Link } from 'react-router-dom'
 import { useToast } from '@chakra-ui/react'
 import { useMutation, useQueryClient } from 'react-query'
-import axios from '../helpers/axios'
+import axios from '../../helpers/axios'
+import { ITodo, TData } from '../../typing/data'
 
-export default function TodoItem({todo}) {
+interface TProps { todo : ITodo }
+
+export default function TodoItem({todo} : TProps) {
     
     const queryClient = useQueryClient();
     const [completed, setCompleted] = useBoolean(todo.completed)
     const toast = useToast();
     
-    const updateTodo = async (newTodoData) => {
+    const updateTodo = async (newTodoData : TData) => {
         const { data } = await axios.put(`todos/${todo.id}`, newTodoData);
         return data;
     }

@@ -17,11 +17,13 @@ import {
     useToast,
     Textarea,
 } from "@chakra-ui/react";
-import axios from "../helpers/axios";
+import axios from "../../helpers/axios";
+import { CRef } from '../../typing/MyRef'
+import { JData } from '../../typing/data'
 
 function CreateJournal() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const initialRef = useRef();
+    const initialRef : CRef = useRef();
     const toast = useToast();
     const {
         register,
@@ -31,7 +33,7 @@ function CreateJournal() {
     } = useForm();
     const queryClient = useQueryClient();
 
-    const createAsyncJournal = async (newJournalData) => {
+    const createAsyncJournal = async (newJournalData: JData) => {
         const { data } = await axios.post("journals", newJournalData);
         return data;
     };
@@ -62,7 +64,7 @@ function CreateJournal() {
         },
     });
 
-    const handleCreate = (data) => {
+    const handleCreate = (data: JData) => {
         mutate(data);
         onClose();
         reset();

@@ -6,4 +6,4 @@ export type MyRef =
     | HTMLSpanElement
     | null;
 
-export type CRef = React.MutableRefObject<FocusableElement | null> | null;
+export type CRef = React.MutableRefObject<FocusableElement | null | undefined>;

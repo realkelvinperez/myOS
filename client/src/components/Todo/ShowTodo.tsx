@@ -9,10 +9,10 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import EditTodo from "../components/EditTodo";
+import EditTodo from "./EditTodo";
 import { useHistory, RouteComponentProps } from "react-router-dom";
-import axios from "../helpers/axios";
-import DeleteAlert from "../components/DeleteAlert";
+import axios from "../../helpers/axios";
+import DeleteAlert from "./DeleteTodoAlert";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 
 export default function Todo({ match }: RouteComponentProps<{ id: string }>) : JSX.Element {

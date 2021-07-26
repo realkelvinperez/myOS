@@ -1,9 +1,9 @@
 import React from "react";
 import { Flex, Heading, Spacer, List, Stack } from "@chakra-ui/react";
-import CreateJournal from "../components/CreateJournal";
+import CreateJournal from "../components/Journal/CreateJournal";
 import { useQuery } from "react-query";
 import axios from "../helpers/axios";
-import JournalItem from "../components/JournalItem";
+import JournalItem from "../components/Journal/Journal";
 import { IJournal } from "../typing/data";
 
 export default function Journal() {
