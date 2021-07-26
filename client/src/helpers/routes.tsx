@@ -4,6 +4,9 @@ import Routines from "../pages/Routines";
 import Todos from "../pages/Todos";
 import Todo from "../components/Todo/ShowTodo";
 import Dashboard from "../pages/Dashboard";
+import ShowJournal from "../components/Journal/ShowJournal";
+
+// TODO: figure out type of array
 
 const routes = [
     {
@@ -35,6 +38,11 @@ const routes = [
         exact: true,
         path: "/journal",
         component: Journals,
+    },
+    {
+        exact: true,
+        path: "/journal/:id",
+        component: ShowJournal,
     },
 ];
 

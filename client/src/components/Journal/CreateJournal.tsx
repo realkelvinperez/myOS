@@ -18,12 +18,12 @@ import {
     Textarea,
 } from "@chakra-ui/react";
 import axios from "../../helpers/axios";
-import { CRef } from '../../typing/MyRef'
-import { JData } from '../../typing/data'
+import { CRef } from "../../typing/MyRef";
+import { JData } from "../../typing/data";
 
 function CreateJournal() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const initialRef : CRef = useRef();
+    const initialRef: CRef = useRef();
     const toast = useToast();
     const {
         register,

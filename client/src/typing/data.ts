@@ -7,6 +7,12 @@ export interface ITodo {
     updated_at: string;
 }
 
+export interface TData {
+    title?: string;
+    description?: string;
+    completed?: boolean;
+}
+
 export interface IJournal {
     id: number;
     title: string;
@@ -14,12 +20,6 @@ export interface IJournal {
     created_at: string;
     updated_at: string;
 }
-export interface TData {
-    title?: string;
-    description?: string;
-    completed?: boolean;
-}
-
 export interface JData {
     title?: string;
     description?: string;

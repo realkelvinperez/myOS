@@ -1,42 +1,47 @@
+import React, { useState } from "react";
+import { RouteComponentProps, useHistory } from "react-router-dom";
 import {
+    Text,
     Box,
     Button,
-    Heading,
     Flex,
     Spacer,
-    Text,
-    Stack,
     useToast,
+    Heading,
+    Stack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import EditTodo from "./EditTodo";
-import { useHistory, RouteComponentProps } from "react-router-dom";
-import axios from "../../helpers/axios";
-import DeleteAlert from "./DeleteTodoAlert";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import axios from "../../helpers/axios";
+import DeleteJournalAlert from "../Journal/DeleteJournalAlert";
+import EditJournal from '../Journal/EditJournal'
 
-export default function Todo({ match }: RouteComponentProps<{ id: string }>) {
+export default function ShowJournal({
+    match,
+}: RouteComponentProps<{ id: string }>) {
+    const history = useHistory();
     const {
         params: { id },
     } = match;
-    const toast = useToast();
     const queryClient = useQueryClient();
-    const history = useHistory();
+
+    const toast = useToast();
+
+    const fetchJournal = async () => {
+        const { data } = await axios(`journals/${id}`);
+        console.log({ data });
+        return data;
+    };
+
+    const { isLoading, data: journal } = useQuery("journal", fetchJournal);
+
     const [isEdit, setEdit] = useState(false);
     const [editButton, setEditButton] = useState({
         color: "blue",
         text: "Edit",
     });
 
-    const fetchTodo = async () => {
-        const { data } = await axios(`todos/${id}`);
-        return data;
-    };
-
-    const { isLoading, data: todo } = useQuery("todo", fetchTodo);
-
-    const deleteTodo = async () => {
-        const { data } = await axios.delete(`todos/${id}`);
+    const deleteJournal = async () => {
+        const { data } = await axios.delete(`journals/${id}`);
         return data;
     };
 
@@ -56,11 +61,12 @@ export default function Todo({ match }: RouteComponentProps<{ id: string }>) {
             });
         }
     };
-    const { mutate } = useMutation(deleteTodo, {
+
+    const { mutate } = useMutation(deleteJournal, {
         onSuccess() {
             toast({
-                title: "Todo Deleted",
-                description: "We've Deleted a Todo for you",
+                title: "Journal Deleted",
+                description: "We've Deleted a Journal for you",
                 status: "warning",
                 duration: 3000,
                 isClosable: true,
@@ -70,8 +76,8 @@ export default function Todo({ match }: RouteComponentProps<{ id: string }>) {
         },
         onError(error) {
             toast({
-                title: "Error Updateding Todo",
-                description: "Sorry we had an error trying to update you todo",
+                title: "Error Updateding Journal",
+                description: "Sorry we had an error trying to update you journal",
                 status: "error",
                 duration: 3000,
                 isClosable: true,
@@ -80,7 +86,7 @@ export default function Todo({ match }: RouteComponentProps<{ id: string }>) {
             console.warn({ error });
         },
         onSettled: (data, error, variables, context) => {
-            queryClient.invalidateQueries("todo");
+            queryClient.invalidateQueries("journal");
             console.log({ data, error, variables, context });
         },
     });
@@ -95,15 +101,18 @@ export default function Todo({ match }: RouteComponentProps<{ id: string }>) {
             <Button marginBottom={5} onClick={history.goBack}>
                 Back
             </Button>
-            {todo && !isEdit && !isLoading ? (
+            {journal && !isEdit && !isLoading ? (
                 <Stack>
-                    <Heading>{todo.title}</Heading>
-                    <Box>Description: {todo.description}</Box>
-                    <Box>Completed: {todo.completed ? "True" : "False"}</Box>
+                    <Heading as="h2">
+                        {journal.title}
+                    </Heading>
+                    <Text>
+                        {journal.entry}          
+                    </Text>
                 </Stack>
             ) : (
-                todo &&
-                !isLoading && <EditTodo toggleEdit={handleEdit} todo={todo} />
+                journal &&
+                !isLoading && <EditJournal toggleEdit={handleEdit} journal={journal} />
             )}
             {isLoading && <Text>Is Loading Please Wait...</Text>}
             <Flex marginTop={5}>
@@ -111,7 +120,10 @@ export default function Todo({ match }: RouteComponentProps<{ id: string }>) {
                     {editButton.text}
                 </Button>
                 <Spacer />
-                <DeleteAlert text="Delete Todo" callback={handleDelete} />
+                <DeleteJournalAlert
+                    text="Delete Journal"
+                    callback={handleDelete}
+                />
             </Flex>
         </Box>
     );
