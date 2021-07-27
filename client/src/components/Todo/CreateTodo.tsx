@@ -21,7 +21,7 @@ import axios from "../../helpers/axios";
 import { CRef } from "../../typing/MyRef";
 import { TData } from '../../typing/data'
 
-function CreateTodo() {
+const CreateTodo : React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const initialRef: CRef = useRef();
     const toast = useToast();

@@ -8,17 +8,17 @@ import {
     AlertDialogFooter,
     Button,
 } from "@chakra-ui/react";
-import { CRef } from '../../typing/MyRef'
+import { CRef } from "../../typing/MyRef";
 
-interface IAlert {
+interface IProps {
     text: string;
     callback: () => void;
 }
 
-function Alert({ text, callback }: IAlert) : JSX.Element {
+const Alert: React.FC<IProps> = ({ text, callback }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const onClose = () => setIsOpen(false);
-    const cancelRef : CRef = useRef(null);
+    const cancelRef: CRef = useRef(null);
 
     const handleCallback = () => {
         callback();
@@ -64,6 +64,6 @@ function Alert({ text, callback }: IAlert) : JSX.Element {
             </AlertDialog>
         </>
     );
-}
+};
 
 export default Alert;

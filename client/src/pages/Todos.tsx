@@ -6,7 +6,7 @@ import TodoItem from "../components/Todo/Todo";
 import { ITodo } from "../typing/data";
 import { Heading, Stack, List, Flex, Spacer } from "@chakra-ui/layout";
 
-function Todos() {
+const Todos: React.FC = () => {
     const fetchTodos = async () => {
         const { data } = await axios("todos");
         return data;

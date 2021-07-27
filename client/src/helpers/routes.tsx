@@ -2,9 +2,10 @@ import Finances from "../pages/Finances";
 import Journals from "../pages/Journals";
 import Routines from "../pages/Routines";
 import Todos from "../pages/Todos";
-import Todo from "../components/Todo/ShowTodo";
+import ShowTodo from "../components/Todo/ShowTodo";
 import Dashboard from "../pages/Dashboard";
 import ShowJournal from "../components/Journal/ShowJournal";
+import Health from "../pages/Health";
 
 // TODO: figure out type of array
 
@@ -27,7 +28,7 @@ const routes = [
     {
         exact: true,
         path: "/todo/:id",
-        component: Todo,
+        component: ShowTodo,
     },
     {
         exact: true,
@@ -43,6 +44,11 @@ const routes = [
         exact: true,
         path: "/journal/:id",
         component: ShowJournal,
+    },
+    {
+        exact: true,
+        path: "/health",
+        component: Health,
     },
 ];
 

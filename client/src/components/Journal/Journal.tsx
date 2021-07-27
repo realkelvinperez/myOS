@@ -3,7 +3,7 @@ import { IJournal } from "../../typing/data";
 import { Link } from "react-router-dom";
 import { LinkBox, Text, LinkOverlay, ListItem } from "@chakra-ui/react";
 
-export default function JournalItem({ journal }: { journal: IJournal }) {
+const JournalItem: React.FC<IJournal> = ({ journal }) => {
     return (
         <ListItem>
             <LinkBox padding={3} border="solid lightgray 2px" borderRadius={15}>
@@ -16,3 +16,5 @@ export default function JournalItem({ journal }: { journal: IJournal }) {
         </ListItem>
     );
 }
+
+export default JournalItem;

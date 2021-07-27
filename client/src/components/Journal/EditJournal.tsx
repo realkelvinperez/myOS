@@ -9,16 +9,16 @@ import {
     Button,
     useToast,
     Flex,
-    Textarea
+    Textarea,
 } from "@chakra-ui/react";
-import { IJournal, JData } from "../../typing/data"
+import { IJournal, JData } from "../../typing/data";
 
-interface JProps {
-    journal: IJournal
+interface IProps {
+    journal: IJournal;
     toggleEdit: () => void;
 }
 
-export default function EditJournal({ journal, toggleEdit }: JProps) {
+const EditJournal: React.FC<IProps> = ({ journal, toggleEdit }) => {
     const toast = useToast();
     const queryclient = useQueryClient();
 
@@ -28,7 +28,10 @@ export default function EditJournal({ journal, toggleEdit }: JProps) {
     });
 
     const updateJournal = async (newJournalData: JData) => {
-        const { data } = await axios.put(`journals/${journal.id}`, newJournalData);
+        const { data } = await axios.put(
+            `journals/${journal.id}`,
+            newJournalData
+        );
         return data;
     };
 
@@ -47,7 +50,8 @@ export default function EditJournal({ journal, toggleEdit }: JProps) {
         onError(error) {
             toast({
                 title: "Error Updateding Journal",
-                description: "Sorry we had an error trying to update you journal",
+                description:
+                    "Sorry we had an error trying to update you journal",
                 status: "warning",
                 duration: 9000,
                 isClosable: true,
@@ -102,4 +106,6 @@ export default function EditJournal({ journal, toggleEdit }: JProps) {
             </Flex>
         </Stack>
     );
-}
+};
+
+export default EditJournal;

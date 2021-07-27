@@ -14,7 +14,11 @@ import { useMutation, useQueryClient } from "react-query";
 import axios from "../../helpers/axios";
 import { ITodo, TData } from "../../typing/data";
 
-export default function TodoItem({ todo }: { todo: ITodo }) {
+interface IProps {
+    todo: ITodo;
+}
+
+const Todo: React.FC<IProps> = ({ todo }) => {
     const queryClient = useQueryClient();
     const [completed, setCompleted] = useBoolean(todo.completed);
     const toast = useToast();
@@ -94,4 +98,6 @@ export default function TodoItem({ todo }: { todo: ITodo }) {
             </LinkBox>
         </ListItem>
     );
-}
+};
+
+export default Todo;

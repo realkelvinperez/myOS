@@ -21,7 +21,7 @@ import axios from "../../helpers/axios";
 import { CRef } from "../../typing/MyRef";
 import { JData } from "../../typing/data";
 
-function CreateJournal() {
+const CreateJournal: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const initialRef: CRef = useRef();
     const toast = useToast();
@@ -99,6 +99,7 @@ function CreateJournal() {
                             <FormControl mt={4}>
                                 <Textarea
                                     {...register("entry", { required: true })}
+                                    height="250px"
                                     placeholder="Journal Entry"
                                 />
                             </FormControl>
@@ -120,6 +121,6 @@ function CreateJournal() {
             </Modal>
         </>
     );
-}
+};
 
 export default CreateJournal;

@@ -15,7 +15,7 @@ import axios from "../../helpers/axios";
 import DeleteAlert from "./DeleteTodoAlert";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 
-export default function Todo({ match }: RouteComponentProps<{ id: string }>) {
+const ShowTodo: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     const {
         params: { id },
     } = match;
@@ -115,4 +115,6 @@ export default function Todo({ match }: RouteComponentProps<{ id: string }>) {
             </Flex>
         </Box>
     );
-}
+};
+
+export default ShowTodo;

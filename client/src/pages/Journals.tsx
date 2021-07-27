@@ -6,7 +6,7 @@ import axios from "../helpers/axios";
 import JournalItem from "../components/Journal/Journal";
 import { IJournal } from "../typing/data";
 
-export default function Journal() {
+const Journal: React.FC = () => {
     const fetchJournals = async () => {
         const { data } = await axios("journals");
         return data;
@@ -38,3 +38,5 @@ export default function Journal() {
         </div>
     );
 }
+
+export default Journal;

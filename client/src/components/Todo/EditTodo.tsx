@@ -19,7 +19,7 @@ interface TProps {
     toggleEdit: () => void;
 }
 
-export default function EditTodo({ todo, toggleEdit }: TProps) {
+const EditTodo: React.FC<TProps> = ({ todo, toggleEdit }) => {
     const toast = useToast();
     const queryclient = useQueryClient();
 
@@ -116,4 +116,6 @@ export default function EditTodo({ todo, toggleEdit }: TProps) {
             </Flex>
         </Stack>
     );
-}
+};
+
+export default EditTodo;

@@ -4,7 +4,7 @@ import { Grid, GridItem, List, ListItem, Box } from "@chakra-ui/layout";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-export default function App() {
+const App: React.FC = () => {
     return (
         <Router>
             <Grid h="100vh" templateRows="1fr" templateColumns="repeat(6, 1fr)">
@@ -26,6 +26,9 @@ export default function App() {
                             <ListItem>
                                 <Link to="/finance">Finance</Link>
                             </ListItem>
+                            <ListItem>
+                                <Link to="/health">Health</Link>
+                            </ListItem>
                         </List>
                     </Box>
                 </GridItem>
@@ -45,4 +48,6 @@ export default function App() {
             </Grid>
         </Router>
     );
-}
+};
+
+export default App;

@@ -14,11 +14,13 @@ export interface TData {
 }
 
 export interface IJournal {
-    id: number;
-    title: string;
-    entry: string;
-    created_at: string;
-    updated_at: string;
+    journal: {
+        id: number;
+        title: string;
+        entry: string;
+        created_at: string;
+        updated_at: string;
+    };
 }
 export interface JData {
     title?: string;

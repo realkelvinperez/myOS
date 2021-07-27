@@ -13,11 +13,11 @@ import {
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import axios from "../../helpers/axios";
 import DeleteJournalAlert from "../Journal/DeleteJournalAlert";
-import EditJournal from '../Journal/EditJournal'
+import EditJournal from "../Journal/EditJournal";
 
-export default function ShowJournal({
+const ShowJournal: React.FC<RouteComponentProps<{ id: string }>> = ({
     match,
-}: RouteComponentProps<{ id: string }>) {
+}) => {
     const history = useHistory();
     const {
         params: { id },
@@ -77,7 +77,8 @@ export default function ShowJournal({
         onError(error) {
             toast({
                 title: "Error Updateding Journal",
-                description: "Sorry we had an error trying to update you journal",
+                description:
+                    "Sorry we had an error trying to update you journal",
                 status: "error",
                 duration: 3000,
                 isClosable: true,
@@ -103,16 +104,14 @@ export default function ShowJournal({
             </Button>
             {journal && !isEdit && !isLoading ? (
                 <Stack>
-                    <Heading as="h2">
-                        {journal.title}
-                    </Heading>
-                    <Text>
-                        {journal.entry}          
-                    </Text>
+                    <Heading as="h2">{journal.title}</Heading>
+                    <Text>{journal.entry}</Text>
                 </Stack>
             ) : (
                 journal &&
-                !isLoading && <EditJournal toggleEdit={handleEdit} journal={journal} />
+                !isLoading && (
+                    <EditJournal toggleEdit={handleEdit} journal={journal} />
+                )
             )}
             {isLoading && <Text>Is Loading Please Wait...</Text>}
             <Flex marginTop={5}>
@@ -127,4 +126,6 @@ export default function ShowJournal({
             </Flex>
         </Box>
     );
-}
+};
+
+export default ShowJournal;
