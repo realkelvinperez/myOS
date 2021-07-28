@@ -13,14 +13,13 @@ import { useToast } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "react-query";
 import axios from "../../helpers/axios";
 import { ITodo, TData } from "../../typing/data";
-import { Draggable } from "react-beautiful-dnd";
 
 interface IProps {
     todo: ITodo;
-    index: number
+    index: number;
 }
 
-const Todo: React.FC<IProps> = ({ todo, index }) => {
+const CompletedTodo: React.FC<IProps> = ({ todo, index }) => {
     const queryClient = useQueryClient();
     const [completed, setCompleted] = useBoolean(todo.completed);
     const toast = useToast();
@@ -80,36 +79,26 @@ const Todo: React.FC<IProps> = ({ todo, index }) => {
     };
 
     return (
-    <Draggable draggableId={todo.id.toString()} index={index}>
-        {(provided, snapshot) => (
-            <ListItem
-                ref={provided.innerRef}
-                isDragging={snapshot.isDragging}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                mb={5}
-            >
-                <LinkBox padding={3} border="solid lightgray 2px" borderRadius={15}>
-                    <Flex>
-                        <Checkbox
-                            size="lg"
-                            mr={3}
-                            zIndex={9}
-                            isChecked={completed}
-                            onChange={handleCheckbox}
-                            onFocus={(e) => e.preventDefault()}
-                        />
-                        <Text>
-                            <LinkOverlay as={Link} to={`/todo/${todo.id}/`}>
-                                {todo.title}
-                            </LinkOverlay>
-                        </Text>
-                    </Flex>
-                </LinkBox>
-            </ListItem>
-        )}
-    </Draggable>
+        <ListItem mb={5}>
+            <LinkBox padding={3} border="solid lightgray 2px" borderRadius={15}>
+                <Flex>
+                    <Checkbox
+                        size="lg"
+                        mr={3}
+                        zIndex={9}
+                        isChecked={completed}
+                        onChange={handleCheckbox}
+                        onFocus={(e) => e.preventDefault()}
+                    />
+                    <Text>
+                        <LinkOverlay as={Link} to={`/todo/${todo.id}/`}>
+                            {todo.title}
+                        </LinkOverlay>
+                    </Text>
+                </Flex>
+            </LinkBox>
+        </ListItem>
     );
 };
 
-export default Todo;
+export default CompletedTodo;

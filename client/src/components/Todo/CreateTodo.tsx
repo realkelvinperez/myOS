@@ -19,9 +19,9 @@ import {
 } from "@chakra-ui/react";
 import axios from "../../helpers/axios";
 import { CRef } from "../../typing/MyRef";
-import { TData } from '../../typing/data'
+import { TData } from "../../typing/data";
 
-const CreateTodo : React.FC = () => {
+const CreateTodo: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const initialRef: CRef = useRef();
     const toast = useToast();
@@ -33,7 +33,7 @@ const CreateTodo : React.FC = () => {
     } = useForm();
     const queryClient = useQueryClient();
 
-    const createAsyncTodo = async (newTodoData : TData) => {
+    const createAsyncTodo = async (newTodoData: TData) => {
         const { data } = await axios.post("todos", newTodoData);
         return data;
     };
@@ -100,9 +100,7 @@ const CreateTodo : React.FC = () => {
 
                             <FormControl mt={4}>
                                 <Textarea
-                                    {...register("description", {
-                                        required: true,
-                                    })}
+                                    {...register("description")}
                                     placeholder="Description"
                                 />
                             </FormControl>
@@ -124,6 +122,6 @@ const CreateTodo : React.FC = () => {
             </Modal>
         </>
     );
-}
+};
 
 export default CreateTodo;

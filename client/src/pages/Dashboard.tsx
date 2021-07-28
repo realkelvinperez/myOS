@@ -11,7 +11,7 @@ const getQuote = () => {
     });
 };
 
-interface Quote {
+interface IQuote {
     author: string | null;
     created_at: string;
     id: number;
@@ -23,11 +23,11 @@ interface Quote {
 const Dashboard: React.FC = () => {
     const { data, isLoading } = getQuote();
 
-    const showQuote = (quote: Quote) => {
+    const showQuote = (quote: IQuote) => {
         return (
             <Center mt="5">
                 <Stack textAlign="center">
-                    <Heading as="h3">Quote</Heading>
+                    <Heading as="h3">Quote of the Day</Heading>
                     <Text fontSize="3xl">{quote.text}</Text>
                     <Text fontWeight="bold">Author: </Text>
                     <Text>{quote.author ? quote.author : "Unknown"}</Text>

@@ -98,7 +98,7 @@ const ShowTodo: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
             {todo && !isEdit && !isLoading ? (
                 <Stack>
                     <Heading>{todo.title}</Heading>
-                    <Box>Description: {todo.description}</Box>
+                    <Box>Description: {todo.description || "N/A"}</Box>
                     <Box>Completed: {todo.completed ? "True" : "False"}</Box>
                 </Stack>
             ) : (

@@ -81,7 +81,7 @@ const EditTodo: React.FC<TProps> = ({ todo, toggleEdit }) => {
                     }
                 />
             </Editable>
-            <Editable defaultValue={todo.description}>
+            <Editable defaultValue={todo.description || "N/A"}>
                 <EditablePreview />
                 <EditableInput
                     onChange={(e) =>
