@@ -1,6 +1,7 @@
 import React from "react";
 import routes from "./helpers/routes";
 import { Grid, GridItem, List, ListItem, Box } from "@chakra-ui/layout";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
