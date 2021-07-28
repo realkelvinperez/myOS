@@ -27,4 +27,5 @@ Route.get('/', async () => {
 Route.group(() => {
   Route.resource('todos', 'TodosController').apiOnly()
   Route.resource('journals', 'JournalsController').apiOnly()
+  Route.resource('quotes', 'QuotesController').apiOnly()
 }).prefix('/api/v1/')
