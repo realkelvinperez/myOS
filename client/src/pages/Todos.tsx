@@ -14,7 +14,7 @@ const Todos: React.FC = () => {
     const fetchTodos = async () => {
         const { data } = await axios("todos");
         console.log(newTodos)
-        if(!newTodos.length) setNewTodos(data);
+        setNewTodos(data);
         return data;
     };
 
